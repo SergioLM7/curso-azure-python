@@ -1,15 +1,8 @@
-from os import system
-import time
+from datetime import date
 
+print(date.today())
+print("Today's date is: " + str(date.today().min))
 
-first_number = int(input('Type the first number: '));
-second_number = int(input('Type the second number: ')); 
-print("The sum is: ", first_number + second_number);
-
-#Timeout 2s to clear the console
-time.sleep(2);
-system("cls");
-
-first_number = int(input('Type the first number: '));
-second_number = int(input('Type the second number: ')); 
-print("The dif is: ", first_number - second_number);
+parsecs = 11
+lightyears = parsecs * 3.26
+print(F"{str(parsecs)} parsecs is {str(lightyears)} lightyears")
