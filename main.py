@@ -1,9 +1,9 @@
-# Exercise if/else Python 1 with and without Ternary Operator
-object_size = 10;
-#if object_size > 5:
-    #print("We need to keep an eye on this object");
-#else:
-    #print("Object poses no threat"); 
+#Exercise String Methods
+text = "Interesting facts about the Moon. The Moon is Earth's only satellite. There are several interesting facts about the Moon and how it affects life here on Earth. On average, the Moon moves 4cm away from the Earth every year. This yearly drift is not significant enough to cause immediate effects on Earth. The highest daylight temperature of the Moon is 127 C."
+sentences = text.split('.');
 
-#Ternary Operator
-print("We need to keep an eye on this object") if object_size > 5 else print("Object poses no threat");
+print(sentences)
+
+for sentence in sentences:
+    if "Moon" in sentence:
+        print(sentence.strip())
