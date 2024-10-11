@@ -1,23 +1,35 @@
-import numpy as np
+def days_to_complete(distance, speed):
+    hours = distance/speed
+    return hours/24
 
-planet_moons = {
-"mercury": 0,
-"venus": 0,
-"earth": 1,
-"mars": 2,
-"jupiter": 79,
-"saturn": 82,
-"uranus": 27,
-"neptune": 14,
-"pluto": 5,
-"haumea": 2,
-"makemake": 1,
-"eris": 1
-}
+print(round(days_to_complete(43223, 13)));
 
-total_moons = sum(planet_moons.values());
-total_planets = len(planet_moons);
-#Sin biblioteca
-print(f'Each planet has an average of {total_moons / total_planets} moons')
-#Usando bibliotecta y convirtendola en una list
-print(f'Each planet has an average of {np.mean(list(planet_moons.values()))} moons')
+def generate_report(main_tank,external_tank,hydrogen_tank):
+    return f"Full Report:\n   Main Tank: {main_tank}\n   External Tank: {external_tank}\n   Hydrogen Tank: {hydrogen_tank}"
+
+print(generate_report(78,89,98))
+
+from datetime import timedelta, datetime
+
+def arrival_time(destination, hours=51):
+    now = datetime.now()
+    arrival = now + timedelta(hours=hours)
+    return arrival.strftime(f"{destination} Arrival: %A %H:%M")
+
+print(arrival_time("Earth"))
+
+#kwargs argumentos de palabra clave variable
+def crew_members(**kwargs):
+    print(f"{len(kwargs)} astronauts assigned for this mission:")
+    for title, name in kwargs.items():
+        print(f"{title}: {name}")
+
+crew_members(captain="Neil Armstrong", pilot="Buzz Aldrin", command_pilot="Michael Collins")
+
+
+#Ejercicio 
+def fuel_report(**fuel_tanks):
+    for name, value in fuel_tanks.items():
+        print(f'{name}: {value}')
+
+fuel_report(main = 50, external = 100, emergency = 60)
