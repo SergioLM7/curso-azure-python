@@ -1,10 +1,15 @@
-new_planet = ''
-planets = []
+rainfall = {
+    'october': 3.5,
+    'november': 4.2,
+    'december': 2.1
+}
 
-while new_planet.lower() != 'done':
-    if new_planet:
-        planets.append(new_planet)
-    new_planet = input('Enter a new planet or done if done: ')
+if 'december' in rainfall:
+    rainfall['december'] += 1
+else:
+    rainfall['december'] = 1
 
-for planet in planets:
-    print(planet)
+for key, value in rainfall.items():
+    print(f'{key}: {value}cm')
+
+print(f'There was {sum(rainfall.values())}cm in the last quarter.')
