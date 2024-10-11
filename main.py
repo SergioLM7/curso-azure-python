@@ -1,9 +1,6 @@
-new_planet = ''
-planets = []
-
-while new_planet != "done":
-    if new_planet:
-        planets.append(new_planet)
-    new_planet = input("Enter a new planet name, or done if you just finished: ")
-
-print(planets)
+from time import sleep
+countdown = [4, 3, 2, 1, 0]
+for number in countdown:
+    print(number)
+    sleep(1)
+print("Blast off!! 🚀")
