@@ -27,9 +27,9 @@ def crew_members(**kwargs):
 crew_members(captain="Neil Armstrong", pilot="Buzz Aldrin", command_pilot="Michael Collins")
 
 
-#Ejercicio 
+#Exercise Arguments kwargs in functions
 def fuel_report(**fuel_tanks):
     for name, value in fuel_tanks.items():
         print(f'{name}: {value}')
 
-fuel_report(main = 50, external = 100, emergency = 60)
+fuel_report(main = 50, external = 100, emergency = 6, secondary = 56)
