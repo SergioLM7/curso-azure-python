@@ -1,23 +1,19 @@
-#Exercise Exceptions in Python
-true_values = ['yes', 'y']
-false_values = ['no', 'n']
+class Elevator:
+    def __init__(self, starting_floor):
+        self.make = "The elevator company"
+        self.floor = starting_floor
 
-def str_to_bool(value):
-    if isinstance(value, str):
-       value = value.lower();
-    else:
-        raise TypeError("Not supported type.")
-    
-    if value in true_values:
-        return True;
-    elif value in false_values:
-        return False;
-    else:
-        raise ValueError("Not valid value.")
+# To create the object
 
-try:
-    print(str_to_bool("False"));
-except TypeError as ex:
-    print(ex);
-except Exception as e:
-    print(e);
+elevator = Elevator(45)
+print(elevator.make) # "The Elevator company"
+print(elevator.floor) # 1
+
+class Car:
+    def __init__(self, color, make):
+        self.color = color # ends up on the object
+        self.make = make # becomes a local variable in the constructor
+
+car = Car("Red", "Ferrari")
+print(car.color) # "Red"
+print(car.make) # would result in an error, `make` does not exist on the object
