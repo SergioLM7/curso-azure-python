@@ -1,35 +1,24 @@
-def days_to_complete(distance, speed):
-    hours = distance/speed
-    return hours/24
+#Errors to control exceptions. Raise exceptions inside the code. Like the throw in C#
+def water_left(astronauts, water_left, days_left):
+    for argument in [astronauts, water_left, days_left]:
+        try:
+            # If argument is an int, the following operation will work
+            argument / 10
+        except TypeError:
+            # TypeError will be raised only if it isn't the right type 
+            # Raise the same exception but with a better error message
+            raise RuntimeError(f"All arguments must be of type int, but received: '{argument}'")
+    daily_usage = astronauts * 11
+    total_usage = daily_usage * days_left
+    total_water_left = water_left - total_usage
+    if total_water_left < 0:
+        raise RuntimeError(f"There is not enough water for {astronauts} astronauts after {days_left} days!")
+    return f"Total water left after {days_left} days is: {total_water_left} liters"
 
-print(round(days_to_complete(43223, 13)));
+def alert_navigation_system(error):
+    print(error);
 
-def generate_report(main_tank,external_tank,hydrogen_tank):
-    return f"Full Report:\n   Main Tank: {main_tank}\n   External Tank: {external_tank}\n   Hydrogen Tank: {hydrogen_tank}"
-
-print(generate_report(78,89,98))
-
-from datetime import timedelta, datetime
-
-def arrival_time(destination, hours=51):
-    now = datetime.now()
-    arrival = now + timedelta(hours=hours)
-    return arrival.strftime(f"{destination} Arrival: %A %H:%M")
-
-print(arrival_time("Earth"))
-
-#kwargs argumentos de palabra clave variable
-def crew_members(**kwargs):
-    print(f"{len(kwargs)} astronauts assigned for this mission:")
-    for title, name in kwargs.items():
-        print(f"{title}: {name}")
-
-crew_members(captain="Neil Armstrong", pilot="Buzz Aldrin", command_pilot="Michael Collins")
-
-
-#Exercise Arguments kwargs in functions
-def fuel_report(**fuel_tanks):
-    for name, value in fuel_tanks.items():
-        print(f'{name}: {value}')
-
-fuel_report(main = 50, external = 100, emergency = 6, secondary = 56)
+try:
+    print(water_left(10, 3.52432, "cosas"));
+except RuntimeError as err:
+    alert_navigation_system(err);
