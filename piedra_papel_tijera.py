@@ -7,12 +7,13 @@ class Participant:
         self.name = name;
     
     def isChooseRight(self, choice):
-        return choice in ["scissors", "paper", "rock"];
+        return choice in ["scissors", "paper", "rock", "spock", "lizard"];
     
     def choose(self):
-        self.choice = input(f"{self.name}, select rock, paper or scissors: ");
-        while not self.isChooseRight(self.choice):
-            self.choice = input(f"{self.name}, select rock, paper or scissors: ");
+        self.choice = input(f"{self.name}, select rock, paper, scissors, lizard or spock: ");
+
+        while not self.isChooseRight(self.choice.lower()):
+            self.choice = input(f"{self.name}, select rock, paper, scissors, lizard or spock: ");
         
         print(f"{self.name} selects {self.choice.lower()}");
         return self.choice.lower();
@@ -23,31 +24,32 @@ class GameRound:
         self.gamer2 = gamer2;
     
     def compareChoices(self):
-        choice1 = self.gamer1.choose()
-        choice2 = self.gamer2.choose() 
+        choice1 = self.gamer1.choose();
+        choice2 = self.gamer2.choose();
 
         if choice1 == choice2:
             return "This round is tied.";
-        elif choice1 == "scissors" and choice2 == "rock":
-            self.gamer2.point += 1;
-            return f"{self.gamer2.name} has won this round";
-        elif choice1 == "rock" and choice2 == "scissors":
-            self.gamer1.point += 1;
-            return f"{self.gamer1.name} has won this round";
-        elif choice1 == "paper" and choice2 == "scissors":
-            self.gamer2.point += 1;
-            return f"{self.gamer2.name} has won this round";
-        elif choice1 == "scissors" and choice2 == "paper":
-            self.gamer1.point += 1;
-            return f"{self.gamer1.name} has won this round";
-        elif choice1 == "rock" and choice2 == "paper":
-            self.gamer2.point += 1;
-            return f"{self.gamer2.name} has won this round";
-        elif choice1 == "paper" and choice2 == "rock":
-            self.gamer1.point += 1;
-            return f"{self.gamer1.name} has won this round";
-        
 
+        winner, loser = self.determine_round_winner(choice1, choice2)
+
+        if winner:
+            winner.point += 1
+            return f"{winner.name} has won this round!"
+        
+    def determine_round_winner(self, choice1, choice2):
+        rules = {
+            "rock": ["scissors", "lizard"],
+            "scissors": ["paper", "lizard"],
+            "paper": ["rock", "spock"],
+            "lizard": ["spock", "paper"],
+            "spock": ["scissors", "rock"]
+        }
+
+        if choice2 in rules.get(choice1, []):
+            return self.gamer1, self.gamer2
+        else:
+            return self.gamer2, self.gamer1
+        
 class Game:
     def __init__(self, gamer1, gamer2):
         self.endGame = False;
